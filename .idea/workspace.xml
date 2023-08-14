@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="838c6b1a-8144-41f8-9d34-c7b432dc10d1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scrapper.py" afterDir="false" />
@@ -13,6 +14,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,7 +88,7 @@
       <workItem from="1691939442951" duration="659000" />
       <workItem from="1691998238819" duration="13000" />
       <workItem from="1692001168589" duration="114000" />
-      <workItem from="1692001321270" duration="3844000" />
+      <workItem from="1692001321270" duration="8708000" />
     </task>
     <servers />
   </component>
@@ -88,7 +96,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/StockBot$main.coverage" NAME="main Coverage Results" MODIFIED="1692005193301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\adiha\OneDrive\Desktop\Degree - computer science\Semester - f\מערכות הפעלה\עבודות\עבודה 4\StockBot" />
+    <SUITE FILE_PATH="coverage/StockBot$main.coverage" NAME="main Coverage Results" MODIFIED="1692031472903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\adiha\OneDrive\Desktop\Degree - computer science\Semester - f\מערכות הפעלה\עבודות\עבודה 4\StockBot" />
     <SUITE FILE_PATH="coverage/StockBot$scrapper.coverage" NAME="scrapper Coverage Results" MODIFIED="1692003252882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
