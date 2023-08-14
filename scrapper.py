@@ -1,9 +1,9 @@
-# TODO: Write a rty except code for entering incorrect ticker_symbol  -  complete
+# TODO: write a rty except code for entering incorrect ticker_symbol  -  complete
 # TODO: Cancel the message pycharm send when an error accord (not so important for the final project) - already try
 #          try:
 #              with warnings.catch_warnings():
 #                 warnings.simplefilter("ignore")
-# TODO: Add code to the print_info function, so that it will also print "candlestick" graph
+
 
 import yfinance as yf
 import mplfinance as mpf
@@ -37,8 +37,6 @@ def print_info(ticker_symbol):
         text_message += f"Low price: {low_price}"
 
         print(text_message)
-
-        
     # re-raise the exception to calling code\
     except KeyError as key:
         print("Scrapper file: A key error occurred.")
