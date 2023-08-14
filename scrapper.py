@@ -3,17 +3,19 @@
 #          try:
 #              with warnings.catch_warnings():
 #                 warnings.simplefilter("ignore")
-
+# TODO: Add code to print_info function, so that it will also print the candlestick chart of the stock  -  complete
 
 import yfinance as yf
 import mplfinance as mpf
-import warnings
+# import warnings
 
 
 def print_info(ticker_symbol):
     try:
+        # convert the word to uppercase
+        ticker_symbol_upper = ticker_symbol.upper()
         # create a Ticker object
-        ticker = yf.Ticker(ticker_symbol)
+        ticker = yf.Ticker(ticker_symbol_upper)
 
         # fetch historical data
         historical_data = ticker.history(period="1y")  # for the last year
@@ -29,7 +31,7 @@ def print_info(ticker_symbol):
         low_price = recent_data['Low']
 
         # Create text message with the required information
-        text_message = f"Here are the details for {ticker_symbol} on the most recent trading day:\n"
+        text_message = f"Here are the details for {ticker_symbol_upper} on the most recent trading day:\n"
         text_message += f"Current price: {current_price}\n"
         text_message += f"Opening price: {open_price}\n"
         text_message += f"Closing price: {close_price}\n"
@@ -37,7 +39,11 @@ def print_info(ticker_symbol):
         text_message += f"Low price: {low_price}"
 
         print(text_message)
-    # re-raise the exception to calling code\
+
+        # Create the candlestick chart and print it to the screen
+        mpf.plot(historical_data, type='candle', style='charles', title=f'{ticker_symbol_upper} Stock Price')
+
+    # re-raise the exception to calling code
     except KeyError as key:
         print("Scrapper file: A key error occurred.")
         raise key
