@@ -1,36 +1,34 @@
 from scrapper import print_info
-import warnings
-# TODO write a rty except code for entering incorrect ticker_symbol
+
+
+# TODO: write a try  except code for entering incorrect ticker_symbol  -  complete
+# TODO: modularize main function  -  complete
+
+def get_ticker_symbol():
+    return input('Please enter a ticker symbol (to quit press "q"): ')
+
+
+def handle_exceptions(exception):
+    error_messages = {
+        KeyError: "A key error occurred. Please try again.",
+        IndexError: "An index error occurred. Please try again.",
+        ConnectionError: "A connection error occurred. Please try again.",
+        TimeoutError: "The request timed out. Please try again.",
+        ValueError: "An invalid value was provided. Please try again.",
+        Exception: f"An unexpected error occurred: {e}. Please try again."
+    }
+    print(error_messages.get(type(exception), f"An unexpected error occurred: {exception}. Please try again."))
+
 
 if __name__ == '__main__':
     run = True
     while run:
         try:
-            # get a ticker symbol from the user
-            ticker_symbol = input('pleas enter a ticker symbol (to quit press "q"): ')
+            ticker_symbol = get_ticker_symbol()
             if ticker_symbol == 'q':
-                print("see you next time :)")
+                print("See you next time :)")
                 run = False
                 break
-
-            # print the data and the candlestick chart stock
             print_info(ticker_symbol)
-        except KeyError as key:
-            print("A key error occurred pleas try agine.")
-            continue
-        except IndexError as index:
-            print("An index error occurred pleas try agine.")
-            continue
-        except ConnectionError as connect:
-            print("A connection error occurred pleas try agine.\n")
-            continue
-        except TimeoutError as time:
-            print("The request timed out pleas try agine.\n")
-            continue
-        except ValueError as value:
-            print("An invalid value was provided pleas try agine.\n")
-            continue
-        except Exception as e:
-            print(f"An unexpected error occurred: {e} pleas try agine\n")
-            raise e
-
+        except (KeyError, IndexError, ConnectionError, TimeoutError, ValueError, Exception) as e:
+            handle_exceptions(e)
