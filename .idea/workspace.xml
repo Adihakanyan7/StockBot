@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="838c6b1a-8144-41f8-9d34-c7b432dc10d1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -89,7 +91,9 @@
       <workItem from="1692038377534" duration="458000" />
       <workItem from="1692041730558" duration="391000" />
       <workItem from="1692042130985" duration="2151000" />
-      <workItem from="1692084700840" duration="3736000" />
+      <workItem from="1692084700840" duration="6834000" />
+      <workItem from="1692097770248" duration="1202000" />
+      <workItem from="1692099024390" duration="2759000" />
     </task>
     <servers />
   </component>
@@ -97,7 +101,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/StockBot$main.coverage" NAME="main Coverage Results" MODIFIED="1692031472903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\adiha\OneDrive\Desktop\Degree - computer science\Semester - f\מערכות הפעלה\עבודות\עבודה 4\StockBot" />
+    <SUITE FILE_PATH="coverage/StockBot$main.coverage" NAME="main Coverage Results" MODIFIED="1692097863409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:\Users\adiha\OneDrive\Desktop\Degree - computer science\Semester - f\מערכות הפעלה\עבודות\עבודה 4\StockBot" />
     <SUITE FILE_PATH="coverage/StockBot$scrapper.coverage" NAME="scrapper Coverage Results" MODIFIED="1692003252882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
