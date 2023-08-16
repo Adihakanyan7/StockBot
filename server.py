@@ -31,7 +31,7 @@ def send_chart(update, context):
         context.bot.send_message(chat_id=update.effective_chat.id, text=text_message)
 
 # Bot token
-bot_token = '6517573892:AAG49U7MO_EMG_YP2wZE9YM2-cg3Wiwa-zE'
+bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
 
 # Create Updater and Dispatcher
 updater = Updater(bot_token)
