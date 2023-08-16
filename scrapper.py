@@ -1,6 +1,3 @@
-# TODO: modify the code to mach the server.py file  - complete
-
-
 import yfinance as yf
 import mplfinance as mpf
 

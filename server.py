@@ -1,5 +1,10 @@
 from telegram.ext import Updater, MessageHandler, Filters
 from scrapper import *
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    handlers=[logging.FileHandler("telegram_bot.log"), logging.StreamHandler()])
 
 
 def send_chart(update, context):
