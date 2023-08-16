@@ -1,10 +1,20 @@
 from telegram.ext import Updater, MessageHandler, Filters
 from scrapper import *
 import logging
+import os
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    handlers=[logging.FileHandler("telegram_bot.log"), logging.StreamHandler()])
+# Check if running on Heroku by checking for an environment variable
+on_heroku = os.environ.get('ON_HEROKU')
+
+if on_heroku:
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                        handlers=[logging.StreamHandler()])
+else:
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                        handlers=[logging.FileHandler("telegram_bot.log"), logging.StreamHandler()])
+
 
 
 def send_chart(update, context):
