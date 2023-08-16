@@ -30,7 +30,3 @@ dp = updater.dispatcher
 # Listen for any text message (not just commands) and call send_chart when one is received
 
 dp.add_handler(MessageHandler(Filters.text & ~Filters.command, send_chart))
-
-# Start the bot
-updater.start_polling()
-updater.idle()
