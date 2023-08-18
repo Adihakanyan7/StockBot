@@ -4,6 +4,7 @@ import re
 import logging
 from functools import lru_cache
 
+
 class StockService:
 
     @staticmethod
@@ -15,38 +16,6 @@ class StockService:
     def create_ticker_object(ticker_symbol):
         """Create and return a ticker object for a given stock symbol."""
         return yf.Ticker(ticker_symbol.upper())
-
-    @staticmethod
-    @lru_cache(maxsize=10000)
-    def is_valid_stock_name(stock_name):
-        """Check if stock name is valid by checking for 'shortName' in its info."""
-        try:
-            return 'shortName' in yf.Ticker(stock_name).info
-        except Exception:
-            return False
-
-    @staticmethod
-    def parse_user_message(message):
-        """Extract stock name, direction ("<" or ">"), and price target from message."""
-        info_pattern = r"(send me info|give me details|tell me about) about?\s+([\w.]+)"
-        match_info = re.match(info_pattern, message, re.IGNORECASE)
-
-        add_pattern = r"add alert\s+([\w.]+)\s*,\s*([<>])\s*,\s*([\d.]+)"
-        match_add = re.match(add_pattern, message, re.IGNORECASE)
-
-        remove_pattern = r"remove alert\s+([\w.]+)\s+([<>])\s+([\d.]+)"
-        match_remove = re.match(remove_pattern, message, re.IGNORECASE)
-
-        if match_info:
-            stock_name = match_info.groups()[1]
-            if StockService.is_valid_stock_name(stock_name):
-                return "info", stock_name, None, None
-        if match_remove:
-            return "remove_alert", match_remove.groups()[0], match_remove.groups()[1], float(match_remove.groups()[2])
-        elif match_add:
-            return "add_alert", match_add.groups()[0], match_add.groups()[1], float(match_add.groups()[2])
-        else:
-            return None, None, None, None
 
     @staticmethod
     def get_ticker_data(ticker):
@@ -102,5 +71,7 @@ class StockService:
                 logging.error(f"Error fetching data for {stock_name}: {e}")
                 continue
 
-            if (direction == ">" and current_price > price_target) or (direction == "<" and current_price < price_target):
-                StockService.send_bot_message(bot_context, chat_id, f"Alert! {stock_name} has reached {current_price}. Your target was {direction}")
+            if (direction == ">" and current_price > price_target) or (
+                    direction == "<" and current_price < price_target):
+                StockService.send_bot_message(bot_context, chat_id,
+                                              f"Alert! {stock_name} has reached {current_price}. Your target was {direction}")

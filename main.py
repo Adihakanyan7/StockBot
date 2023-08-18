@@ -1,18 +1,13 @@
-import os
 import schedule
 import time
 import logging
+
 from dispatcher import setup_dispatcher
-from databaseManager import DatabaseManager
-from stockService import StockService
+from constants import *
 
 # Initialize logging
 logging.basicConfig(level=logging.INFO)
 
-# Get info from the global variables
-bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
-password_db = os.environ.get('PASSWORD_FOR_DB')
-username_db = os.environ.get('USERNAME_FOR_DB')
 
 # Ensure essential environment variables are set
 if not all([bot_token, password_db, username_db]):

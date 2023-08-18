@@ -1,6 +1,6 @@
 import logging
-from telegram.ext import Updater, MessageHandler, Filters
-from stock_service import handle_stock_request
+from telegram.ext import Updater,CommandHandler, MessageHandler, Filters
+from stock_service import handle_stock_request, start
 
 # Initialize logging
 logging.basicConfig(level=logging.INFO)
@@ -22,8 +22,10 @@ def setup_dispatcher(token):
 
         # Add a message handler for non-command text messages to handle stock requests.
         dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_stock_request))
-
+        dp.add_handler(CommandHandler("start", start))
         return updater, dp
     except Exception as e:
         logging.error(f"Error setting up dispatcher: {e}")
         return None, None
+
+
