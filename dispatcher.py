@@ -1,9 +1,21 @@
+import logging
 from telegram.ext import Updater, MessageHandler, Filters
 from stock_service import handle_stock_request
 
+# Initialize logging
+logging.basicConfig(level=logging.INFO)
+
 
 def setup_dispatcher(token):
-    """Setup and return a dispatcher for handling Telegram updates."""
+    """
+    Setup and return a dispatcher for handling Telegram updates.
+
+    Args:
+        token (str): The bot token from Telegram.
+
+    Returns:
+        tuple: A tuple containing the updater and dispatcher.
+    """
     try:
         updater = Updater(token=token, use_context=True)
         dp = updater.dispatcher
@@ -13,5 +25,5 @@ def setup_dispatcher(token):
 
         return updater, dp
     except Exception as e:
-        print(f"Error setting up dispatcher: {e}")
+        logging.error(f"Error setting up dispatcher: {e}")
         return None, None
