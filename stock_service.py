@@ -7,10 +7,15 @@ from stockService import StockService
 logging.basicConfig(level=logging.INFO)
 
 # Constants
-ERROR_MESSAGE = "An error occurred. Please try again later."
 INVALID_STOCK_MSG = "Invalid stock name provided. Please check and try again."
 ALERT_ADD_MSG = "Got it! I'll alert you when {} goes {} {}."
 ALERT_REMOVE_MSG = "Alert for {} when it goes {} {} has been removed."
+ERROR_MESSAGE = "Sorry, something went wrong!"
+PARSE_ERROR_MESSAGE = "I couldn't understand your request. Please ensure it's in the correct format."
+successfully_added = "Alert successfully added!"
+successfully_removed = "Alert successfully removed!"
+checking_for_info = "Please hold on a moment; I'm checking the details for you."
+
 CHART_DIRECTORY = os.path.join(os.getcwd(), 'charts')
 
 # Fetch environment variables for the database
@@ -70,16 +75,27 @@ def handle_info_request(context, chat_id, stock_name):
 
 def handle_stock_request(update, context):
     """Main handler for incoming stock requests."""
+
+    chat_id = update.effective_chat.id
+
     try:
         message_text = update.message.text.strip()
         action, stock_name, direction, price_target = stock_service.parse_user_message(message_text)
+    except Exception as e:
+        logging.error(f"Error in parsing user message: {e}")
+        stock_service.send_bot_message(context, chat_id, PARSE_ERROR_MESSAGE)
+        return
 
+    try:
         if action == "add_alert":
-            handle_add_alert(context, update.effective_chat.id, stock_name, direction, price_target)
+            handle_add_alert(context, chat_id, stock_name, direction, price_target)
+            stock_service.send_bot_message(context, chat_id, successfully_added)
         elif action == "remove_alert":
-            handle_remove_alert(context, update.effective_chat.id, stock_name, direction, price_target)
+            handle_remove_alert(context, chat_id, stock_name, direction, price_target)
+            stock_service.send_bot_message(context, chat_id, successfully_removed)
         elif action == "info":
-            handle_info_request(context, update.effective_chat.id, stock_name)
+            stock_service.send_bot_message(context, chat_id, checking_for_info)
+            handle_info_request(context, chat_id, stock_name)
     except Exception as e:
         logging.error(f"Error in handle_stock_request: {e}")
-        stock_service.send_bot_message(context, update.effective_chat.id, ERROR_MESSAGE)
+        stock_service.send_bot_message(context, chat_id, ERROR_MESSAGE)
