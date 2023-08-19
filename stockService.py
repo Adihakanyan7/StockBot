@@ -1,8 +1,7 @@
 import yfinance as yf
 import mplfinance as mpf
-import re
 import logging
-from functools import lru_cache
+
 
 
 class StockService:

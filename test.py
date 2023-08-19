@@ -1,21 +1,6 @@
 #
 # Certainly! Here's a revised list based on what's left to be accomplished:
-#
-# Command Feedback:
-#
-# For every user action, ensure there's a response to make the bot feel more interactive.
-# Successful actions should be confirmed with positive messages like "Alert successfully added!".
-# For failures, provide reasons such as "Failed to add the alert. The stock symbol might be incorrect."
-# Refine Chatbot Experience:
-#
-# Implement a /help command to guide users on bot usage.
-# Handle exceptions gracefully, formatting errors into user-friendly messages.
-# Consider incorporating Natural Language Processing (NLP) to better understand varied user inputs.
-# Expand Functionality:
-#
-# Enable users to remove all alerts at once using a command like /remove_all_alerts.
-# Introduce an update feature for modifying alerts.
-# Think about adding features like displaying trending stocks or top gainers/losers.
+
 # Deployment & Scaling:
 #
 # Decide on a cloud provider or a dedicated server for 24/7 bot uptime.
