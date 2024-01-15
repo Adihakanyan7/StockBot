@@ -19,19 +19,19 @@ PARSE_ERROR_MSG = "I couldn't understand your request. Please ensure it's in the
 
 CHART_DIRECTORY = os.path.join(os.getcwd(), 'charts')
 
-# Fetch environment variables for the database
+# Fetch environment variables for the database and bot token
 password_db = os.environ.get('PASSWORD_FOR_DB')
 username_db = os.environ.get('USERNAME_FOR_DB')
-if not password_db or not username_db:
-    raise ValueError("Missing database credentials in environment variables!")
+db_host = os.environ.get('DB_HOST')
+db_port = os.environ.get('DB_PORT')
+db_name = os.environ.get('DB_NAME')
+bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
 
-DATABASE_URL = f"postgresql://{username_db}:{password_db}@localhost:5432/stock_alerts_db"
+# Form the database URL
+DATABASE_URL = f"postgresql://{username_db}:{password_db}@{db_host}:{db_port}/{db_name}"
 
 # Ensure the directory for charts exists
 os.makedirs(CHART_DIRECTORY, exist_ok=True)
-
-# Get token
-bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
 
 # Initialize services
 db_manager = DatabaseManager(DATABASE_URL)

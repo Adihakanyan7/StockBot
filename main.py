@@ -2,6 +2,9 @@ import schedule
 import time
 import logging
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from dispatcher import setup_dispatcher
 from constants import *
 
@@ -29,18 +32,7 @@ def stock_alert_check_job():
         StockService.check_stock_alerts(db_manager, dp.bot)
     except Exception as e:
         logging.error(f"Error during stock alert check: {e}")
-
 def main():
-<<<<<<< HEAD
-    print("Starting bot...")
-    try:
-        updater.start_polling()
-        print("Bot polling started...")
-        updater.idle()
-    except Exception as e:
-        print(f"Error: {e}")
-    print("Bot stopped.")
-=======
     logging.info("Starting bot...")
 
     # Schedule the stock alert check job to run every 10 minutes
@@ -52,13 +44,10 @@ def main():
     # Keep running the scheduled jobs in the background
     while True:
         schedule.run_pending()
-        # Introducing a 1-second delay ensures a balance between responsiveness and efficiency.
-        # This allows the system to promptly handle dynamic or varied task schedules that might be added in the future.
-        time.sleep(1)
+        time.sleep(1)  # Sleep for a second to prevent overloading
 
     updater.idle()
     logging.info("Bot stopped.")
->>>>>>> feature/user-message-alerts
 
 if __name__ == "__main__":
     main()

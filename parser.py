@@ -3,17 +3,25 @@ import re
 import logging
 from functools import lru_cache
 
+
 class Parser:
+    import logging
 
     @staticmethod
     @lru_cache(maxsize=10000)
     def is_valid_stock_name(stock_name):
         """Check if stock name is valid by checking for 'shortName' in its info."""
         try:
-            return 'shortName' in yf.Ticker(stock_name).info
-        except Exception:
+            info = yf.Ticker(stock_name).info
+            valid = 'shortName' in info
+            if valid:
+                logging.info(f"Stock name {stock_name} is valid.")
+            else:
+                logging.info(f"Stock name {stock_name} is invalid. Info: {info}")
+            return valid
+        except Exception as e:
+            logging.error(f"Error checking stock name {stock_name}: {e}")
             return False
-
 
     @staticmethod
     def parse_user_message(message):
