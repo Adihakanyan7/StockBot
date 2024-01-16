@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\adiha\OneDrive\Desktop\Degree - computer science\Semester - f\מערכות הפעלה\עבודות\עבודה 4\StockBot\venv"
+VIRTUAL_ENV="C:\Users\adiha\GitHub_projects\StockBot\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
