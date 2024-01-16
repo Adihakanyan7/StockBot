@@ -81,6 +81,7 @@ Simply type "help".
 def handle_stock_request(update, context):
     """Main handler for incoming stock requests."""
     chat_id = update.effective_chat.id
+    print("stock_service -> chat_id: ", chat_id)
 
     # Helper function for parsing errors
     def handle_parsing_error(error_message):
@@ -88,8 +89,14 @@ def handle_stock_request(update, context):
         stock_service.send_bot_message(context, chat_id, PARSE_ERROR_MSG)
         return None
 
+    # Helper function to handle service unavailability
+    def handle_service_unavailable():
+        message = "The stock information service is temporarily unavailable. Please try again later."
+        stock_service.send_bot_message(context, chat_id, message)
+
     try:
         message_text = update.message.text.strip()
+        print("stock_service -> message_text", message_text)
         action, stock_name, direction, price_target = parser.parse_user_message(message_text)
 
         # Check if any parsed item is None or empty
@@ -104,18 +111,29 @@ def handle_stock_request(update, context):
         if action == "help":
             send_help_message(update, context)
             return
-        if action == "add_alert":
+
+        # Handle 'info' action with enhanced error handling
+        elif action == "info":
+            is_valid, error_type = parser.is_valid_stock_name(stock_name)
+            if not is_valid:
+                if error_type == "ServiceUnavailable":
+                    handle_service_unavailable()
+                else:
+                    stock_service.send_bot_message(context, chat_id, ERROR_MSG)
+                return
+            handle_info_request(context, chat_id, stock_name)
+        # Handle 'add_alert' action
+        elif action == "add_alert":
             handle_add_alert(context, chat_id, stock_name, direction, price_target)
             stock_service.send_bot_message(context, chat_id, SUCCESS_ADDED_MSG)
 
+        # Handle 'remove_alert' action
         elif action == "remove_alert":
             handle_remove_alert(context, chat_id, stock_name, direction, price_target)
             stock_service.send_bot_message(context, chat_id, SUCCESS_REMOVED_MSG)
 
-        elif action == "info":
-            stock_service.send_bot_message(context, chat_id, INFO_CHECK_MSG)
-            handle_info_request(context, chat_id, stock_name)
-
     except Exception as e:
         logging.error(f"Error in handle_stock_request: {e}")
         stock_service.send_bot_message(context, chat_id, ERROR_MSG)
+
+

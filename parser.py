@@ -12,16 +12,22 @@ class Parser:
     def is_valid_stock_name(stock_name):
         """Check if stock name is valid by checking for 'shortName' in its info."""
         try:
+            print("parser.py -> is_valid_stock_name -> before using 'yf.Ticker(stock_name).info' - > I'm here :) ")
             info = yf.Ticker(stock_name).info
+            print("parser.py -> is_valid_stock_name -> info: ", info)
             valid = 'shortName' in info
+            print("parser.py -> is_valid_stock_name -> valid: ", valid)
             if valid:
                 logging.info(f"Stock name {stock_name} is valid.")
             else:
                 logging.info(f"Stock name {stock_name} is invalid. Info: {info}")
-            return valid
+            return valid, None  # No error
         except Exception as e:
             logging.error(f"Error checking stock name {stock_name}: {e}")
-            return False
+            if "404" in str(e):
+                return False, "ServiceUnavailable"
+            else:
+                return False, "OtherError"
 
     @staticmethod
     def parse_user_message(message):
@@ -43,6 +49,7 @@ class Parser:
             return "help", None, None, None
         if match_info:
             stock_name = match_info.groups()[1]
+            print("parser - >stock_name: ", stock_name)
             logging.info(stock_name)
             if Parser.is_valid_stock_name(stock_name):
                 return "info", stock_name, None, None
